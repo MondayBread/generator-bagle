@@ -1,4 +1,4 @@
-# AngularJS Full-Stack generator [
+# AngularJS Full-Stack generator
 
 > Yeoman generator for creating MEAN stack applications, using MongoDB, Express, AngularJS, and Node - lets you quickly set up a project following best practices.
 
