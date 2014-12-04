@@ -1,18 +1,13 @@
-# AngularJS Full-Stack generator [![Build Status](https://travis-ci.org/DaftMonk/generator-angular-fullstack.svg?branch=master)](http://travis-ci.org/DaftMonk/generator-angular-fullstack) [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/DaftMonk/generator-angular-fullstack)
+# AngularJS Full-Stack generator [
 
 > Yeoman generator for creating MEAN stack applications, using MongoDB, Express, AngularJS, and Node - lets you quickly set up a project following best practices.
 
-## Example project
-
-Generated with defaults: http://fullstack-demo.herokuapp.com/.
-
-Source code: https://github.com/DaftMonk/fullstack-demo
 
 ## Usage
 
-Install `generator-angular-fullstack`:
+Install `generator-bagle`:
 ```
-npm install -g generator-angular-fullstack
+npm install -g generator-bagle
 ```
 
 Make a new directory, and `cd` into it:
@@ -20,9 +15,9 @@ Make a new directory, and `cd` into it:
 mkdir my-new-project && cd $_
 ```
 
-Run `yo angular-fullstack`, optionally passing an app name:
+Run `yo bagle`, optionally passing an app name:
 ```
-yo angular-fullstack [app-name]
+yo bagle [app-name]
 ```
 
 Run `grunt` for building, `grunt serve` for preview, and `grunt serve:dist` for a preview of the built app.
@@ -63,28 +58,28 @@ A grunt task looks for new files in your `client/app` and `client/components` fo
 Available generators:
 
 * App
-    - [angular-fullstack](#app) (aka [angular-fullstack:app](#app))
+    - [bagle](#app) (aka [bagle:app](#app))
 * Server Side
-    - [angular-fullstack:endpoint](#endpoint)
+    - [bagle:endpoint](#endpoint)
 * Client Side
-    - [angular-fullstack:route](#route)
-    - [angular-fullstack:controller](#controller)
-    - [angular-fullstack:filter](#filter)
-    - [angular-fullstack:directive](#directive)
-    - [angular-fullstack:service](#service)
-    - [angular-fullstack:provider](#service)
-    - [angular-fullstack:factory](#service)
-    - [angular-fullstack:decorator](#decorator)
+    - [bagle:route](#route)
+    - [bagle:controller](#controller)
+    - [bagle:filter](#filter)
+    - [bagle:directive](#directive)
+    - [bagle:service](#service)
+    - [bagle:provider](#service)
+    - [bagle:factory](#service)
+    - [bagle:decorator](#decorator)
 * Deployment
-    - [angular-fullstack:openshift](#openshift)
-    - [angular-fullstack:heroku](#heroku)
+    - [bagle:openshift](#openshift)
+    - [bagle:heroku](#heroku)
 
 ### App
 Sets up a new AngularJS + Express app, generating all the boilerplate you need to get started.
 
 Example:
 ```bash
-yo angular-fullstack
+yo bagle
 ```
 
 ### Endpoint
@@ -93,7 +88,7 @@ Generates a new API endpoint.
 
 Example:
 ```bash
-yo angular-fullstack:endpoint message
+yo bagle:endpoint message
 [?] What will the url of your endpoint be? /api/messages
 ```
 
@@ -110,7 +105,7 @@ Generates a new route.
 
 Example:
 ```bash
-yo angular-fullstack:route myroute
+yo bagle:route myroute
 [?] Where would you like to create this route? client/app/
 [?] What will the url of your route be? /myroute
 ```
@@ -129,7 +124,7 @@ Generates a controller.
 
 Example:
 ```bash
-yo angular-fullstack:controller user
+yo bagle:controller user
 [?] Where would you like to create this controller? client/app/
 ```
 
@@ -143,7 +138,7 @@ Generates a directive.
 
 Example:
 ```bash
-yo angular-fullstack:directive myDirective
+yo bagle:directive myDirective
 [?] Where would you like to create this directive? client/app/
 [?] Does this directive need an external html file? Yes
 ```
@@ -159,7 +154,7 @@ Produces:
 
 Example:
 ```bash
-yo angular-fullstack:directive simple
+yo bagle:directive simple
 [?] Where would you like to create this directive? client/app/
 [?] Does this directive need an external html file? No
 ```
@@ -174,7 +169,7 @@ Generates a filter.
 
 Example:
 ```bash
-yo angular-fullstack:filter myFilter
+yo bagle:filter myFilter
 [?] Where would you like to create this filter? client/app/
 ```
 
@@ -188,7 +183,7 @@ Generates an AngularJS service.
 
 Example:
 ```bash
-yo angular-fullstack:service myService
+yo bagle:service myService
 [?] Where would you like to create this service? client/app/
 ```
 
@@ -198,14 +193,14 @@ Produces:
     client/app/myService/myService.service.spec.js
 
 
-You can also do `yo angular-fullstack:factory` and `yo angular-fullstack:provider` for other types of services.
+You can also do `yo bagle:factory` and `yo bagle:provider` for other types of services.
 
 ### Decorator
 Generates an AngularJS service decorator.
 
 Example:
 ```bash
-yo angular-fullstack:decorator serviceName
+yo bagle:decorator serviceName
 [?] Where would you like to create this decorator? client/app/
 ```
 
@@ -217,7 +212,7 @@ Produces
 
 Deploying to OpenShift can be done in just a few steps:
 
-    yo angular-fullstack:openshift
+    yo bagle:openshift
 
 A live application URL will be available in the output.
 
@@ -254,7 +249,7 @@ Commit and push the resulting build, located in your dist folder:
 
 Deploying to heroku only takes a few steps.
 
-    yo angular-fullstack:heroku
+    yo bagle:heroku
 
 To work with your new heroku app using the command line, you will need to run any `heroku` commands from the `dist` folder.
 
@@ -380,9 +375,10 @@ An example server component in `server/api`
     ├── thing.socket.js         - Register socket events
     └── thing.spec.js           - Test
 
+
 ## Contribute
 
-See the [contributing docs](https://github.com/DaftMonk/generator-angular-fullstack/blob/master/contributing.md)
+See the [contributing docs](https://github.com/DaftMonk/generator-bagle/blob/master/contributing.md)
 
 This project has 2 main branches: `master` and `canary`. The `master` branch is where the current stable code lives and should be used for production setups. The `canary` branch is the main development branch, this is where PRs should be submitted to (backport fixes may be applied to `master`).
 

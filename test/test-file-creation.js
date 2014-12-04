@@ -7,7 +7,7 @@ var expect = chai.expect;
 var fs = require('fs-extra');
 var exec = require('child_process').exec;
 
-describe('angular-fullstack generator', function () {
+describe('bagle generator', function () {
   var gen, defaultOptions = {
     script: 'js',
     markup: 'html',
@@ -25,7 +25,7 @@ describe('angular-fullstack generator', function () {
     gen.run({}, function () {
       var afGenerator;
       var deps = [path.join('../..', generatorType)];
-      afGenerator = helpers.createGenerator('angular-fullstack:' + generatorType, deps, [name]);
+      afGenerator = helpers.createGenerator('bagle:' + generatorType, deps, [name]);
 
       helpers.mockPrompt(afGenerator, mockPrompt);
       afGenerator.run([], function () {
@@ -40,7 +40,7 @@ describe('angular-fullstack generator', function () {
       '../../app',
       [
         helpers.createDummyGenerator(),
-        'ng-component:app'
+        'bagle-component:app'
       ]
     ];
 
@@ -49,7 +49,7 @@ describe('angular-fullstack generator', function () {
         return done(err);
       }
 
-      gen = helpers.createGenerator('angular-fullstack:app', deps);
+      gen = helpers.createGenerator('bagle:app', deps);
       gen.options['skip-install'] = true;
       done();
     }.bind(this));
@@ -112,11 +112,11 @@ describe('angular-fullstack generator', function () {
       it('should use existing config if available', function(done) {
         this.timeout(60000);
         fs.copySync(__dirname + '/fixtures/.yo-rc.json', __dirname + '/temp/.yo-rc.json');
-        var gen = helpers.createGenerator('angular-fullstack:app', [
+        var gen = helpers.createGenerator('bagle:app', [
           '../../app',
           [
             helpers.createDummyGenerator(),
-            'ng-component:app'
+            'bagle-component:app'
           ]
         ]);
         gen.options['skip-install'] = true;

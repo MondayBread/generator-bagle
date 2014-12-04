@@ -148,11 +148,11 @@ module.exports = function (grunt) {
         '../app',
         [
           helpers.createDummyGenerator(),
-          'ng-component:app'
+          'bagle-component:app'
         ]
       ];
 
-      var gen = helpers.createGenerator('angular-fullstack:app', deps);
+      var gen = helpers.createGenerator('bagle:app', deps);
 
       helpers.mockPrompt(gen, options);
       gen.run({}, function () {
