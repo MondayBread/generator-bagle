@@ -1,23 +1,22 @@
+(function() {
 'use strict';
 
 angular.module('<%= scriptAppName %>', [<%= angularModules %>])
-  <% if(filters.ngroute) { %>.config(function ($routeProvider, $locationProvider<% if(filters.auth) { %>, $httpProvider<% } %>) {
-    $routeProvider
-      .otherwise({
-        redirectTo: '/'
-      });
+  <% if(filters.ngroute) { %>.config(config)<% } %><% if(filters.uirouter) { %>.config(config)<% } %><% if(filters.auth) { %>
+  .factory('authInterceptor', authInterceptor)
+  .run(run)<% } %>;
 
-    $locationProvider.html5Mode(true);<% if(filters.auth) { %>
+  /* @ngInject */
+  <% if(filters.ngroute) { %>function config($routeProvider, $locationProvider<% if(filters.auth) { %>, $httpProvider<% } %>) {
+    $routeProvider.otherwise({ redirectTo: '/' });<% if(filters.auth) { %>
     $httpProvider.interceptors.push('authInterceptor');<% } %>
-  })<% } %><% if(filters.uirouter) { %>.config(function ($stateProvider, $urlRouterProvider, $locationProvider<% if(filters.auth) { %>, $httpProvider<% } %>) {
-    $urlRouterProvider
-      .otherwise('/');
-
-    $locationProvider.html5Mode(true);<% if(filters.auth) { %>
+  }<% } %><% if(filters.uirouter) { %>function config($stateProvider, $urlRouterProvider, $locationProvider<% if(filters.auth) { %>, $httpProvider<% } %>) {
+    $urlRouterProvider.otherwise('/');<% if(filters.auth) { %>
     $httpProvider.interceptors.push('authInterceptor');<% } %>
-  })<% } %><% if(filters.auth) { %>
+  }<% } %><% if(filters.auth) { %>
 
-  .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
+  /* @ngInject */
+  function authInterceptor($rootScope, $q, $cookieStore, $location) {
     return {
       // Add authorization token to headers
       request: function (config) {
@@ -41,9 +40,10 @@ angular.module('<%= scriptAppName %>', [<%= angularModules %>])
         }
       }
     };
-  })
+  }
 
-  .run(function ($rootScope, $location, Auth) {
+  /* @ngInject */
+  function run($rootScope, $location, Auth) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on(<% if(filters.ngroute) { %>'$routeChangeStart'<% } %><% if(filters.uirouter) { %>'$stateChangeStart'<% } %>, function (event, next) {
       Auth.isLoggedInAsync(function(loggedIn) {
@@ -52,4 +52,6 @@ angular.module('<%= scriptAppName %>', [<%= angularModules %>])
         }
       });
     });
-  })<% } %>;
+  }<% } %>
+
+})();

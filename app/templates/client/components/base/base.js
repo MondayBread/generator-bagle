@@ -1,3 +1,6 @@
-'use strict';
+(function() {
+  'use strict';
 
-angular.module('baseFramework', []);
+  angular.module('baseFramework', []);
+
+})();

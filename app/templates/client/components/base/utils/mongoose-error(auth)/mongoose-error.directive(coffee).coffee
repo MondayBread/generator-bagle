@@ -3,7 +3,7 @@
 ###
 Removes server error when user updates input
 ###
-angular.module '<%= scriptAppName %>'
+angular.module 'baseFramework'
 .directive 'mongooseError', ->
   restrict: 'A'
   require: 'ngModel'

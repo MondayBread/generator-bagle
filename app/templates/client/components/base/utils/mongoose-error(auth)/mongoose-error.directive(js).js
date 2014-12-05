@@ -1,10 +1,16 @@
-'use strict';
+(function() {
 
-/**
- * Removes server error when user updates input
- */
-angular.module('<%= scriptAppName %>')
-  .directive('mongooseError', function () {
+  'use strict';
+
+  /**
+   * Removes server error when user updates input
+   */
+  angular
+    .module('baseFramework')
+    .directive('mongooseError', mongooseError);
+
+  /* @ngInject */
+  function mongooseError() {
     return {
       restrict: 'A',
       require: 'ngModel',
@@ -14,4 +20,6 @@ angular.module('<%= scriptAppName %>')
         });
       }
     };
-  });
+  }
+
+})();

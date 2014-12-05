@@ -1,8 +1,13 @@
-/* global io */
-'use strict';
+(function() {
 
-angular.module('<%= scriptAppName %>')
-  .factory('socket', function(socketFactory) {
+  'use strict';
+
+  angular
+    .module('baseFramework')
+    .factory('socket', socket);
+
+   /* @ngInject */
+   function socket(socketFactory) {
 
     // socket.io now auto-configures its connection when we ommit a connection url
     var ioSocket = io('', {
@@ -71,4 +76,6 @@ angular.module('<%= scriptAppName %>')
         socket.removeAllListeners(modelName + ':remove');
       }
     };
-  });
+  }
+
+})();

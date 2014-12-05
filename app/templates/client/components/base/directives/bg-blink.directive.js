@@ -1,7 +1,13 @@
-'use strict';
+(function(){
 
-angular.module('baseFramework')
-  .directive('bgBlink', function($timeout) {
+  'use strict';
+
+  angular
+    .module('baseFramework')
+    .directive('bgBlink', bgBlink);
+
+  /* @ngInject */
+  function bgBlink($timeout) {
     return function(scope, element, attrs) {
       var hideTimer;
       var showTimer;
@@ -35,4 +41,6 @@ angular.module('baseFramework')
         }
       });
     };
-  });
+  }
+
+})();

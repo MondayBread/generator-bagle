@@ -1,7 +1,13 @@
-'use strict';
+(function() {  
+  
+  'use strict';
 
-angular.module('baseFramework')
-  .directive('bgEnter', function () {
+  angular
+    .module('baseFramework')
+    .directive('bgEnter', bgEnter);
+
+  /* @ngInject */
+  function bgEnter() {
     return function (scope, element, attrs) {
       element.bind("keydown keypress", function (event) {
         if(event.which === 13) {
@@ -13,4 +19,6 @@ angular.module('baseFramework')
         }
       });
     };
-  });
+  }
+
+})();
