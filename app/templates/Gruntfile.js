@@ -256,6 +256,67 @@ module.exports = function (grunt) {
       }
     },
 
+    // The actual grunt server settings
+    connect: {
+      options: {
+        port: 9000,
+        // Change this to '0.0.0.0' to access the server from outside.
+        hostname: '*',
+        livereload: 35729,
+        onCreateServer: function(server, connect, options) {
+          var io = require('socket.io').listen(server);
+          console.log('====> socket.io - server : ', server);
+          io.sockets.on('connection', function(socket) {
+            console.log('====> socket.io - connection : ', socket);
+          });
+        }
+      },
+      livereload: {
+        options: {
+          open: false,
+          middleware: function (connect) {
+            var client = 'client';
+            return [
+              connect.static(client),
+              connect.static('.tmp'),
+              connect().use(
+                '/client/app',
+                '/client/bower_components',
+                '/client/components',
+                connect.static('./client/bower_components'),
+                connect.static('./client/assets')
+              )
+            ];
+          }
+        }
+      },
+      test: {
+        options: {
+          port: 9001,
+          middleware: function (connect) {
+            var client = 'client';
+            return [
+              connect.static(client),
+              connect.static('test'),
+              connect().use(
+                '/client/app',
+                '/client/bower_components',
+                '/client/components',
+                connect.static('./client/bower_components'),
+                connect.static('./client/assets')
+              )
+            ];
+          }
+        }
+      },
+      dist: {
+        options: {
+          open: true,
+          base: '<%= yeoman.dist %>'
+        }
+      }
+    },
+
     // Automatically inject Bower components into the app
     wiredep: {
       target: {
@@ -622,6 +683,7 @@ module.exports = function (grunt) {
           '<%%= yeoman.client %>/index.html': [
               ['{.tmp,<%%= yeoman.client %>}/{app,components}/**/*.js',
                '!{.tmp,<%%= yeoman.client %>}/app/app.js',
+               '!{.tmp,<%= yeoman.client %>}/components/base/base.js',
                '!{.tmp,<%%= yeoman.client %>}/{app,components}/**/*.spec.js',
                '!{.tmp,<%%= yeoman.client %>}/{app,components}/**/*.mock.js']
             ]
@@ -736,8 +798,8 @@ module.exports = function (grunt) {
         'concurrent:server',
         'injector',
         'wiredep',
-        'autoprefixer',
-        'concurrent:debug'
+        'autoprefixer'// not use nodemon in server ,
+        //'concurrent:debug'
       ]);
     }
 
@@ -751,7 +813,8 @@ module.exports = function (grunt) {
       'injector',
       'wiredep',
       'autoprefixer',
-      'express:dev',
+      'connect:livereload',
+      //'express:dev',
       'wait',
       'open',
       'watch'
@@ -798,7 +861,8 @@ module.exports = function (grunt) {
         'injector',
         'wiredep',
         'autoprefixer',
-        'express:dev',
+        'connect:livereload',
+        //'express:dev',
         'protractor'
       ]);
     }
